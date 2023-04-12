@@ -12,7 +12,7 @@ let defaultDistDirInit = false
 export const initDistDir = (distDir: string = defaultDistDir) => {
   if (distDir === defaultDistDir) defaultDistDirInit = true
   if(existsSync(distDir)) {
-    rmdirSync(distDir)
+    rmdirSync(distDir,{recursive: true})
   }
   mkdirSync(distDir)
   spawnSync('git init', {
