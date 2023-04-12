@@ -1,0 +1,22 @@
+{
+  "name": "pr-rebase",
+  "version": "1.0.0",
+  "description": "批量rebase未关闭的pr",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acyza/pr-rebase.git"
+  },
+  "author": "acyza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acyza/pr-rebase/issues"
+  },
+  "homepage": "https://github.com/acyza/pr-rebase#readme",
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
