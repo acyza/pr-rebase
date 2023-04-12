@@ -1,4 +1,4 @@
-import FetchBranch, { defaultDistDir } from "./FetchBranch"
+import FetchBranch, { defaultDistDir, initDistDir } from "./FetchBranch"
 import { spawnSync,SpawnSyncOptions } from 'child_process'
 import type { PrBranchInfo } from './GetPrBranchInfo'
 
@@ -6,8 +6,12 @@ const spanOption: SpawnSyncOptions = {
   shell: true,
   stdio: [null, process.stdout, process.stderr]
 }
-
+let preRepository: string | null = null
 export default (branchInfo: PrBranchInfo,distDir: string = defaultDistDir) => {
+  if (branchInfo.to.repository !== preRepository) {
+    preRepository = branchInfo.to.repository
+    initDistDir()
+  }
   FetchBranch(branchInfo.from, 'from', distDir);
   FetchBranch(branchInfo.to, 'to', distDir);
   spawnSync('git checkout from', {

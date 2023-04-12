@@ -1,5 +1,5 @@
 import { spawnSync } from 'child_process'
-import { existsSync, mkdirSync } from 'fs'
+import { existsSync, mkdirSync, rmdirSync } from 'fs'
 
 export interface BranchInfo {
   repository: string,
@@ -12,7 +12,7 @@ let defaultDistDirInit = false
 export const initDistDir = (distDir: string = defaultDistDir) => {
   if (distDir === defaultDistDir) defaultDistDirInit = true
   if(existsSync(distDir)) {
-    throw new Error('目标文件夹已存在')
+    rmdirSync(distDir)
   }
   mkdirSync(distDir)
   spawnSync('git init', {
@@ -23,7 +23,6 @@ export const initDistDir = (distDir: string = defaultDistDir) => {
 }
 
 export default (info: BranchInfo,toBranch: string, distDir: string = defaultDistDir) => {
-  //if (distDir === defaultDistDir && !defaultDistDirInit) initDistDir()
   const result = spawnSync(
     `git fetch https://github.com/${info.repository}.git ${info.branch}:${toBranch}`,
     {
