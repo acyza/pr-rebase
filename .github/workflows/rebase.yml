@@ -4,6 +4,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: gh auth setup-git
+        run: gh auth setup-git
       - name: npm install
         run: npm install
       - name: npm start
