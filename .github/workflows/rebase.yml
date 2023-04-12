@@ -4,12 +4,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: gh auth login
-        run: gh auth login
-        env:
-          GH_TOKEN: ${{secrets.TOKEN}}
       - name: gh auth setup-git
         run: gh auth setup-git
+        env:
+          GH_TOKEN: ${{secrets.TOKEN}}
       - name: npm install
         run: npm install
       - name: npm start
