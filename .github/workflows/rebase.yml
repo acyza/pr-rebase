@@ -3,6 +3,7 @@ jobs:
   rebase:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: npm install
         run: npm install
       - name: npm start
